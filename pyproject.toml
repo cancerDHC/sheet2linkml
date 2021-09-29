@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "sheet2linkml"
+version = "1.0.0"
+description = "Google Sheets to LinkML generator for the CRDC-H model"
+authors = [
+    "Gaurav Vaidya <gaurav@renci.org>"
+]
+
+readme = "README.md"
+
+homepage = "https://github.com/cancerDHC/sheet2linkml"
+repository = "https://github.com/cancerDHC/sheet2linkml"
+documentation = "https://github.com/cancerDHC/sheet2linkml"
+
+keywords = ["data model", "linked data", "linkml"]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+packages = [
+    { include = "sheet2linkml" }
+]
+
+[tool.poetry.scripts]
+sheet2linkml = "sheet2linkml.cli:main"
+
+
+[tool.poetry.dependencies]
+python = "^3.7.1"
+
+requests = "^2.26"
+linkml-runtime = "^1.1.2"
+pygsheets = "^2.0.4"
+PyYAML = "^5.4.1"
+setuptools = "^52.0.0"
+
+
+[tool.poetry.dev-dependencies]
+python-dotenv = "^0.15.0"

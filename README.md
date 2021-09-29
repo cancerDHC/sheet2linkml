@@ -27,5 +27,5 @@ pip install dist/sheet2linkml-1.0.0-py3-none-any.whl
 ## Command Line Client Usage
 
 ```shell
-sheet2linkml --output ~/path/to/crdch_model.yaml --loging-config ~/path/to/logging.ini
+sheet2linkml --output ~/path/to/crdch_model.yaml --logging-config ~/path/to/logging.ini
 ```

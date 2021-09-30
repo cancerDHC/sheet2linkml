@@ -77,5 +77,3 @@ poetry publish  # publish the package to PyPI
 
 > You'll need to register for a PyPI account before uploading packages to the package index. Similarly for Test 
 PyPI as well.
-
-

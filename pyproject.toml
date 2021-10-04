@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sheet2linkml"
-version = "1.0.0"
+version = "1.0.1"
 description = "Google Sheets to LinkML generator for the CRDC-H model"
 authors = [
     "Gaurav Vaidya <gaurav@renci.org>"

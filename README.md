@@ -10,13 +10,13 @@ to generate a [LinkML](https://github.com/linkml/linkml) representation of the C
 
 - Python 3.9 or higher
 - [pyenv](https://github.com/pyenv/pyenv)
-    - If you do not have a version of Python greater than 3.9, it is recommended to use pyenv to be able to easily use and 
+    - If you do not have a version of Python greater than 3.9, it is recommended to use `pyenv` to be able to easily use and 
 switch between multiple Python versions.
     - If you’re experiencing issues with pyenv on macOS, you can consider using [miniconda](https://docs.conda.io/en/latest/miniconda.html).
 - [poetry](https://github.com/python-poetry/poetry)
-    - One-time installation commands are avaialble for [osx/linux/bash on windows](https://github.com/python-poetry/poetry#osx--linux--bashonwindows-install-instructions) and for [windows powershell](https://github.com/python-poetry/poetry#windows-powershell-install-instructions)
+    - One-time installation commands are available for [osx/linux/bash on windows](https://github.com/python-poetry/poetry#osx--linux--bashonwindows-install-instructions) and for [windows powershell](https://github.com/python-poetry/poetry#windows-powershell-install-instructions).
 
-If you are using a Windows machine, typical bash programs will not work on cmd in the same way as they work in the Linux/MacOS terminals. To circumvent this, it is recommended that you use one of the following Bash on Windows strategies
+If you are using a Windows machine, typical bash programs will not work on `cmd` in the same way as they work in the Linux/MacOS terminals. To circumvent this, it is recommended that you use one of the following Bash on Windows strategies
 - [WSL](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
 - [Cygwin](https://cygwin.com/index.html)
 - [Git Bash](https://gitforwindows.org/) 
@@ -32,7 +32,6 @@ Create and activate a Python 3.9+ virtual environment within which you can insta
 ```shell
 python3 -m venv .venv
 source .venv/bin/activate
-poetry install
 python -m pip install sheet2linkml
 ```
 

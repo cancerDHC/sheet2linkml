@@ -51,7 +51,7 @@ A `google_api_credentials.json` file is also required in the root of this repo. 
 And the user is responsible for defining 
 - `~/path/to/crdch_model.yaml`
 - `~/path/to/logging.ini`
-    - `logging.ini` may be adaquate for many users
+    - `./logging.ini` may be adaquate for many users
 
 ### Then perform the conversion:
 

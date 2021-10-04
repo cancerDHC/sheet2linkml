@@ -48,7 +48,7 @@ python -m pip install sheet2linkml
 
 Identify the Google Sheet that you want to convert to LinkML. Note that sheet2linkml is not currently a general-purpose Google Sheet to LinkML converter. It will only work with Google Sheets that have been written in a particular, currently undefined format.
 
-Contact your CCDH colleagues to obtain the correct sheet ID and assert it either in a `.env` file (?) or in the shell, like this:
+Contact your CCDH colleagues to obtain the correct sheet ID and assert it either in a `.env` file or in the shell, like this:
 
 ```shell
 export CDM_GOOGLE_SHEET_ID=WbM2Jr869ofmdcSmhX_1E0aLWvnK2-gr47Mo_tzuQKWy

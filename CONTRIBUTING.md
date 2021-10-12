@@ -44,6 +44,16 @@ poetry build
 pip install dist/sheet2linkml-x.y.z-py3-none-any.whl  # install wheel file
 ```
 
+## Format code with `black`
+
+The code which you intend to commit and merge into this repository should be conformant with the standards adopted  
+by the [black](https://black.readthedocs.io/en/stable/index.html) code formatter. In order to format your code with 
+`black`, run the following command:
+
+```shell
+poetry run black ~/path/to/directory
+```
+
 ## Release process
 
 Once the code has been merged into the `main` branch on this repo, there are two processes that need to be completed 

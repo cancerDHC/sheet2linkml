@@ -308,7 +308,7 @@ class GSheetModel(ModelElement):
         )
 
         def fix_type_name(entity, dct, prop):
-            print(f'fix_type_name({entity}, {dct}, {prop})')
+            print(f"fix_type_name({entity}, {dct}, {prop})")
             value = dct[prop]
             if value is not None and value not in valid_types:
                 logging.warning(
@@ -320,7 +320,7 @@ class GSheetModel(ModelElement):
             fix_type_name(entity.name, entity, "is_a")
             for attrName in entity.attributes:
                 # Ignore attributes that start with `_`.
-                if not attrName.startswith('_'):
+                if not attrName.startswith("_"):
                     attr = entity.attributes[attrName]
                     fix_type_name(f"{entity.name}.{attrName}", attr, "range")
 

@@ -19,6 +19,7 @@ contributor and the reviewer present) is required for contributing.
 ## Development environment setup
 
 1. Install package dependencies.
+   1. Install poetry if necessary. One-time installation commands are available for [osx/linux/bash on windows](https://github.com/python-poetry/poetry#osx--linux--bashonwindows-install-instructions) and for [windows powershell](https://github.com/python-poetry/poetry#windows-powershell-install-instructions).
 2. Clone the sheet2linkml package repository.
 
 ```shell

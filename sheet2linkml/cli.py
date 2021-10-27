@@ -17,12 +17,13 @@ from sheet2linkml.source.gsheetmodel.gsheetmodel import GSheetModel
 from sheet2linkml.source.gsheetmodel.mappings import Mappings
 from sheet2linkml.terminologies.tccm.api import TCCMService
 
+
 @click.command()
 @click.option(
     "--output",
     "-o",
     type=click.Path(),
-    default='model.yaml',
+    default="model.yaml",
     help="The file that the generated LinkML model should be written to.",
 )
 @click.option(
@@ -34,7 +35,7 @@ from sheet2linkml.terminologies.tccm.api import TCCMService
     "--logging-config",
     type=str,
     help="A logging configuration file.",
-    default='logging.ini',
+    default="logging.ini",
 )
 @click.option(
     "--write-mappings",
@@ -54,8 +55,10 @@ def main(output, filter_entity, logging_config, write_mappings, include_terminol
     load_dotenv()
 
     # Read in Google API credentials.
-    google_api_credentials = os.getenv('GOOGLE_API_CREDENTIALS', 'google_api_credentials.json')
-    google_sheet_id = os.getenv('CDM_GOOGLE_SHEET_ID')
+    google_api_credentials = os.getenv(
+        "GOOGLE_API_CREDENTIALS", "google_api_credentials.json"
+    )
+    google_sheet_id = os.getenv("CDM_GOOGLE_SHEET_ID")
 
     # Arbitrarily set a CRDC-H root URI.
     crdch_root = "https://example.org/crdch"

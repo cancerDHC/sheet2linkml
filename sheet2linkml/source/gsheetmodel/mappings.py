@@ -1,12 +1,15 @@
-from sheet2linkml.model import ModelElement
-from linkml_runtime.linkml_model.meta import Element
-from linkml_runtime.linkml_model.types import Uriorcurie
 import re
 import urllib
 import csv
 import logging
+
+from typing import List
 from enum import Enum
 from dataclasses import dataclass
+
+from sheet2linkml.model import ModelElement
+from linkml_runtime.linkml_model.meta import Element
+from linkml_runtime.linkml_model.types import Uriorcurie
 
 
 class MappingRelations(Enum):
@@ -69,7 +72,7 @@ class Mappings:
         self,
         mapping_string: str,
         default_relation: MappingRelations = MappingRelations.SKOS_RELATED_MATCH,
-    ) -> list[Mapping]:
+    ) -> List[Mapping]:
         """
         Add mappings from the provided mapping string with the specified default relation.
         """
@@ -183,7 +186,7 @@ class Mappings:
                 element.mappings.append(mapping.target)
 
     @classmethod
-    def write_to_file(cls, mappings: list[Mapping], filename: str, model):
+    def write_to_file(cls, mappings: List[Mapping], filename: str, model):
         """
         Write the list of mappings to a filename, provided as a string.
 

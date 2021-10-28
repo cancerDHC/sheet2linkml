@@ -1,15 +1,20 @@
+import re
+import logging
+
+from typing import List, Dict
+from functools import cached_property, lru_cache
+from datetime import datetime, timezone
+
+import pygsheets
+
 from sheet2linkml.model import ModelElement
 from sheet2linkml.source.gsheetmodel.mappings import Mappings
 from sheet2linkml.source.gsheetmodel.entity import Entity, EntityWorksheet, Attribute
 from sheet2linkml.source.gsheetmodel.enum import EnumWorksheet, Enum
 from sheet2linkml.source.gsheetmodel.datatype import Datatype, DatatypeWorksheet
 from sheet2linkml.terminologies.service import TerminologyService
+
 from linkml_runtime.linkml_model.meta import SchemaDefinition
-from functools import cached_property, cache
-from datetime import datetime, timezone
-import re
-import logging
-import pygsheets
 
 
 class GSheetModel(ModelElement):
@@ -97,8 +102,9 @@ class GSheetModel(ModelElement):
 
         return result
 
-    @cache
-    def entity_worksheets(self) -> list[EntityWorksheet]:
+    # Decorator that can save time when associated operation is periodically called with the same arguments.
+    @lru_cache
+    def entity_worksheets(self) -> List[EntityWorksheet]:
         """
         A list of worksheets available in this model.
 
@@ -134,8 +140,8 @@ class GSheetModel(ModelElement):
             for worksheet in entity_worksheets
         ]
 
-    @cache
-    def entities(self) -> list[Entity]:
+    @lru_cache
+    def entities(self) -> List[Entity]:
         """
         :return: The list of entities in this model.
         """
@@ -144,7 +150,7 @@ class GSheetModel(ModelElement):
             result.extend(worksheet.entities)
         return result
 
-    def datatype_worksheets(self) -> list[DatatypeWorksheet]:
+    def datatype_worksheets(self) -> List[DatatypeWorksheet]:
         """
         A list of datatype worksheets available in this model.
 
@@ -155,7 +161,7 @@ class GSheetModel(ModelElement):
 
         return [DatatypeWorksheet(self, self.sheet.worksheet("title", "Primitives"))]
 
-    def datatypes(self) -> list[Datatype]:
+    def datatypes(self) -> List[Datatype]:
         """
         :return: The list of Datatypes in this model.
         """
@@ -164,7 +170,7 @@ class GSheetModel(ModelElement):
             result.extend(worksheet.datatypes)
         return result
 
-    def enum_worksheets(self) -> list[EnumWorksheet]:
+    def enum_worksheets(self) -> List[EnumWorksheet]:
         """
         A list of enum worksheets available in this model.
 
@@ -172,7 +178,7 @@ class GSheetModel(ModelElement):
         """
         return [EnumWorksheet(self, self.sheet.worksheet("title", "O_CCDH Enums"))]
 
-    def enums_from_worksheets(self) -> list[Enum]:
+    def enums_from_worksheets(self) -> List[Enum]:
         """
         A list of enums available from worksheets in this model.
         """
@@ -182,7 +188,7 @@ class GSheetModel(ModelElement):
         return result
 
     @cached_property
-    def mappings(self) -> list[Mappings.Mapping]:
+    def mappings(self) -> List[Mappings.Mapping]:
         """Return a list of all the mappings in this LinkML document."""
         mappings = [
             mapping

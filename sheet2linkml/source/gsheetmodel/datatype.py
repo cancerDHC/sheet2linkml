@@ -1,9 +1,13 @@
-from sheet2linkml.model import ModelElement
-from sheet2linkml.source.gsheetmodel.mappings import Mappings, MappingRelations
-from pygsheets import worksheet
-from linkml_runtime.linkml_model.meta import TypeDefinition
 import logging
 import re
+
+from typing import List, Dict
+
+from sheet2linkml.model import ModelElement
+from sheet2linkml.source.gsheetmodel.mappings import Mappings, MappingRelations
+
+from pygsheets import worksheet
+from linkml_runtime.linkml_model.meta import TypeDefinition
 
 
 class Datatype(ModelElement):
@@ -17,7 +21,7 @@ class Datatype(ModelElement):
     everything should get mapped to right types everywhere..
     """
 
-    def __init__(self, model, sheet: worksheet, name: str, rows: list[dict[str, str]]):
+    def __init__(self, model, sheet: worksheet, name: str, rows: List[Dict[str, str]]):
         """
         Create a datatype based on a GSheetModel and a Google Sheet worksheet.
 
@@ -193,7 +197,7 @@ class DatatypeWorksheet(ModelElement):
         self.worksheet = sheet
 
     @property
-    def rows(self) -> list[dict]:
+    def rows(self) -> List[Dict]:
         """
         Returns this datatype worksheet as a list of rows. We use the header row to create these dictionaries.
 
@@ -202,7 +206,7 @@ class DatatypeWorksheet(ModelElement):
         return self.worksheet.get_all_records(empty_value=None)
 
     @property
-    def included_rows(self) -> list[dict]:
+    def included_rows(self) -> List[Dict]:
         """
         Returns this datatype worksheet as a list of included rows.
 
@@ -217,7 +221,7 @@ class DatatypeWorksheet(ModelElement):
         ]
 
     @property
-    def datatype_names(self) -> list[str]:
+    def datatype_names(self) -> List[str]:
         """
         Return a list of all the datatype names in this worksheet.
 
@@ -230,7 +234,7 @@ class DatatypeWorksheet(ModelElement):
         ]
 
     @property
-    def datatypes_as_included_rows(self) -> dict[str, list[dict]]:
+    def datatypes_as_included_rows(self) -> Dict[str, List[Dict]]:
         """
         Group the list of rows based on having identical COL_DATATYPE_NAME values.
 
@@ -249,7 +253,7 @@ class DatatypeWorksheet(ModelElement):
         return result
 
     @property
-    def grouped_datatypes(self) -> dict[str, Datatype]:
+    def grouped_datatypes(self) -> Dict[str, Datatype]:
         """
         Return a list of datatypes in this file, grouped into a dict by key name.
 
@@ -262,7 +266,7 @@ class DatatypeWorksheet(ModelElement):
         }
 
     @property
-    def datatypes(self) -> list[Datatype]:
+    def datatypes(self) -> List[Datatype]:
         """
         Return a list of datatypes in this worksheet.
 
@@ -303,7 +307,7 @@ class DatatypeWorksheet(ModelElement):
 
         return f"[{self.worksheet.title}]({self.worksheet.url})"
 
-    def as_linkml(self, root_uri) -> list[TypeDefinition]:
+    def as_linkml(self, root_uri) -> List[TypeDefinition]:
         """
         Return all LinkML TypeDefinitions in this worksheet. We do this by converting each
         Datatype into its LinkML TypeDefinition.

@@ -9,13 +9,15 @@ import re
 import subprocess
 import logging
 import logging.config
+
 import click
-from linkml_runtime.dumpers import yaml_dumper
-from dotenv import load_dotenv
 
 from sheet2linkml.source.gsheetmodel.gsheetmodel import GSheetModel
 from sheet2linkml.source.gsheetmodel.mappings import Mappings
 from sheet2linkml.terminologies.tccm.api import TCCMService
+
+from linkml_runtime.dumpers import yaml_dumper
+from dotenv import load_dotenv
 
 
 @click.command()

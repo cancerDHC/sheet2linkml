@@ -1,8 +1,15 @@
+import logging
+import re
+import urllib.parse
+
+from typing import List, Dict
 from functools import cached_property
+
 from sheet2linkml.terminologies.service import TerminologyService
 from sheet2linkml.model import ModelElement
 from sheet2linkml.source.gsheetmodel.mappings import Mappings, MappingRelations
 from sheet2linkml.source.gsheetmodel.enum import Enum
+
 from pygsheets import worksheet
 from linkml_runtime.linkml_model.meta import (
     SchemaDefinition,
@@ -12,9 +19,6 @@ from linkml_runtime.linkml_model.meta import (
     PermissibleValue,
     Example,
 )
-import logging
-import re
-import urllib.parse
 
 
 class Entity(ModelElement):
@@ -29,7 +33,7 @@ class Entity(ModelElement):
         model,
         sheet: worksheet,
         name: str,
-        rows: list[dict[str, str]],
+        rows: List[Dict[str, str]],
         terminology_service: TerminologyService,
     ):
         """
@@ -49,7 +53,7 @@ class Entity(ModelElement):
         self.terminology_service = terminology_service
 
     @property
-    def attribute_rows(self) -> list[dict[str, str]]:
+    def attribute_rows(self) -> List[Dict[str, str]]:
         """
         Returns this entity as a list of attribute rows.
 
@@ -80,7 +84,7 @@ class Entity(ModelElement):
         ]
 
     @property
-    def entity_row(self) -> dict[str, str]:
+    def entity_row(self) -> Dict[str, str]:
         """
         Returns the "entity row" -- the single row in the spreadsheet that represents this
         entity itself. Writes errors in the logs if more than one "entity row" is found (only the
@@ -169,7 +173,7 @@ class Entity(ModelElement):
         return mappings
 
     @property
-    def mappings_including_attributes(self) -> list[Mappings.Mapping]:
+    def mappings_including_attributes(self) -> List[Mappings.Mapping]:
         """
         Returns the list of all mappings of this entity as well as all of its attributes.
         """
@@ -232,7 +236,7 @@ class Attribute:
         self,
         model,
         entity,
-        row: dict[str, str],
+        row: Dict[str, str],
         terminology_service: TerminologyService,
     ):
         """
@@ -491,7 +495,7 @@ class EntityWorksheet(ModelElement):
         self.terminology_service = terminology_service
 
     @property
-    def rows(self) -> list[dict]:
+    def rows(self) -> List[Dict]:
         """
         Returns this entity as a list of rows. We use the header row to create these dictionaries.
 
@@ -500,7 +504,7 @@ class EntityWorksheet(ModelElement):
         return self.worksheet.get_all_records(empty_value=None)
 
     @property
-    def included_rows(self) -> list[dict]:
+    def included_rows(self) -> List[Dict]:
         """
         Returns this entity as a list of included rows.
 
@@ -515,7 +519,7 @@ class EntityWorksheet(ModelElement):
         ]
 
     @property
-    def entity_names(self) -> list[str]:
+    def entity_names(self) -> List[str]:
         """
         Return a list of all the entity names in this worksheet.
 
@@ -528,7 +532,7 @@ class EntityWorksheet(ModelElement):
         ]
 
     @property
-    def entities_as_included_rows(self) -> dict[str, list[dict]]:
+    def entities_as_included_rows(self) -> Dict[str, List[Dict]]:
         """
         Group the list of rows based on having identical COL_ENTITY_NAME values.
 
@@ -568,7 +572,7 @@ class EntityWorksheet(ModelElement):
         return filtered
 
     @property
-    def grouped_entities(self) -> dict[str, Entity]:
+    def grouped_entities(self) -> Dict[str, Entity]:
         """
         Return a list of entities in this file, grouped into a dict by key name.
 
@@ -587,7 +591,7 @@ class EntityWorksheet(ModelElement):
         }
 
     @property
-    def entities(self) -> list[Entity]:
+    def entities(self) -> List[Entity]:
         """
         Return a list of entities in this file.
 
@@ -628,7 +632,7 @@ class EntityWorksheet(ModelElement):
 
         return f"[{self.worksheet.title}]({self.worksheet.url})"
 
-    def as_linkml(self, root_uri) -> list[SchemaDefinition]:
+    def as_linkml(self, root_uri) -> List[SchemaDefinition]:
         """
         Return all LinkML SchemaDefinitions in this worksheet. We do this by converting each
         Entity into its LinkML SchemaDefinition.

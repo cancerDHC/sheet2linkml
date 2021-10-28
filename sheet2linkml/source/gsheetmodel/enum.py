@@ -1,5 +1,7 @@
 import logging
 import re
+
+from typing import List, Dict
 from functools import cached_property
 
 from linkml_runtime.linkml_model.meta import (
@@ -18,7 +20,7 @@ class Enum(ModelElement):
     An enum represents an enumeration stored in a single worksheet in a Google Sheet spreadsheet.
     """
 
-    def __init__(self, model, sheet: worksheet, name: str, rows: list[dict[str, str]]):
+    def __init__(self, model, sheet: worksheet, name: str, rows: List[Dict[str, str]]):
         """
         Create an enum based on a GSheetModel and a Google Sheet worksheet.
 
@@ -34,7 +36,7 @@ class Enum(ModelElement):
         self.rows = rows
 
     @property
-    def value_rows(self) -> list[dict[str, str]]:
+    def value_rows(self) -> List[Dict[str, str]]:
         """
         Returns this enum as a list of value rows.
 
@@ -49,11 +51,11 @@ class Enum(ModelElement):
         ]
 
     @property
-    def values(self) -> list:
+    def values(self) -> List:
         return [EnumValue(self.model, self, row) for row in self.value_rows]
 
     @property
-    def enum_row(self) -> dict[str, str]:
+    def enum_row(self) -> Dict[str, str]:
         """
         Returns the "enum row" -- the single row in the spreadsheet that represents this
         enum itself. Writes errors in the logs if more than one "enum row" is found (only the
@@ -169,7 +171,7 @@ class Enum(ModelElement):
         return mappings
 
     @property
-    def mappings_including_values(self) -> list[Mappings.Mapping]:
+    def mappings_including_values(self) -> List[Mappings.Mapping]:
         """
         Returns the list of all mappings of this enum as well as all of its values.
         """
@@ -224,7 +226,7 @@ class EnumValue:
     It is represented by a single row in a Google Sheet spreadsheet.
     """
 
-    def __init__(self, model, enum: Enum, row: dict[str, str]):
+    def __init__(self, model, enum: Enum, row: Dict[str, str]):
         """
         Create an enum based on a GSheetModel and a Google Sheet worksheet.
 
@@ -345,7 +347,7 @@ class EnumWorksheet(ModelElement):
         self.worksheet = sheet
 
     @property
-    def rows(self) -> list[dict]:
+    def rows(self) -> List[Dict]:
         """
         Returns this EnumWorksheet as a list of rows. We use the header row to create these dictionaries.
 
@@ -354,7 +356,7 @@ class EnumWorksheet(ModelElement):
         return self.worksheet.get_all_records(empty_value=None)
 
     @property
-    def included_rows(self) -> list[dict]:
+    def included_rows(self) -> List[Dict]:
         """
         Returns this entity as a list of included rows.
 
@@ -369,7 +371,7 @@ class EnumWorksheet(ModelElement):
         ]
 
     @property
-    def enum_names(self) -> list[str]:
+    def enum_names(self) -> List[str]:
         """
         Return a list of all the entity names in this worksheet.
 
@@ -381,7 +383,7 @@ class EnumWorksheet(ModelElement):
         ]
 
     @property
-    def enums_as_included_rows(self) -> dict[str, list[dict]]:
+    def enums_as_included_rows(self) -> Dict[str, List[Dict]]:
         """
         Group the list of rows based on having identical COL_ENUM_NAME values.
 
@@ -414,7 +416,7 @@ class EnumWorksheet(ModelElement):
         return filtered
 
     @property
-    def grouped_entities(self) -> dict[str, Enum]:
+    def grouped_entities(self) -> Dict[str, Enum]:
         """
         Return a list of enums in this worksheet, grouped into a dict by enum name.
 
@@ -427,7 +429,7 @@ class EnumWorksheet(ModelElement):
         }
 
     @property
-    def enums(self) -> list[Enum]:
+    def enums(self) -> List[Enum]:
         """
         Return a list of enums in this worksheet.
 
@@ -468,7 +470,7 @@ class EnumWorksheet(ModelElement):
 
         return f"[{self.worksheet.title}]({self.worksheet.url})"
 
-    def as_linkml(self, root_uri) -> list[SchemaDefinition]:
+    def as_linkml(self, root_uri) -> List[SchemaDefinition]:
         """
         Return all LinkML SchemaDefinitions in this worksheet. We do this by converting each
         Entity into its LinkML SchemaDefinition.

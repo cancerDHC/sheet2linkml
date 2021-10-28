@@ -18,6 +18,7 @@ class TCCMService(TerminologyService):
         """Set up a TCCM Terminology Service access system based around the provided base_url."""
         self.base_url = base_url
 
+    # Decorator that can save time when associated operation is periodically called with the same arguments.
     # This is unlikely to change during a run and is quite expensive (since we download it from the network), so
     # we memoize it.
     @lru_cache

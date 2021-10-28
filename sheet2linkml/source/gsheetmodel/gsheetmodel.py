@@ -102,6 +102,7 @@ class GSheetModel(ModelElement):
 
         return result
 
+    # Decorator that can save time when associated operation is periodically called with the same arguments.
     @lru_cache
     def entity_worksheets(self) -> List[EntityWorksheet]:
         """

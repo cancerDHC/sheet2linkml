@@ -25,3 +25,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Retroactive black formatting of entire codebase
 * Github Action that checks if checked in code is black formatted
+* Compatible with Python versions 3.7 and 3.8

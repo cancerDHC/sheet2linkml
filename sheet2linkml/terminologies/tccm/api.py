@@ -1,10 +1,12 @@
-from sheet2linkml.terminologies.service import TerminologyService
+import logging
+
+from datetime import datetime, timezone
+from functools import lru_cache
 
 import requests
-from functools import cache
-import logging
-from datetime import datetime, timezone
 import yaml
+
+from sheet2linkml.terminologies.service import TerminologyService
 
 
 class TCCMService(TerminologyService):
@@ -18,7 +20,7 @@ class TCCMService(TerminologyService):
 
     # This is unlikely to change during a run and is quite expensive (since we download it from the network), so
     # we memoize it.
-    @cache
+    @lru_cache
     def get_enum_values_for_field(self, field_name: str):
         """
         Returns information on the enum fields for a particular field.

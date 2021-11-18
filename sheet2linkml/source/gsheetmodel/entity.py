@@ -426,7 +426,7 @@ class Attribute:
 
         # For CodeableConcepts, we specify that the values should come from an enumeration.
         if self.terminology_service and attribute_range == "CodeableConcept":
-            slot.values_from = f'crdch:{Enum.fix_enum_name(self.full_name)}'
+            slot.values_from = f"crdch:{Enum.fix_enum_name(self.full_name)}"
 
         # Multivalued fields need to be inlined as a list.
         # (Eventually, we might want to inline some of these as dicts, but not yet.)

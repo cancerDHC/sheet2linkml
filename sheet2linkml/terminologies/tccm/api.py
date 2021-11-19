@@ -40,10 +40,9 @@ class TCCMService(TerminologyService):
         response = requests.get(
             url, headers={"accept": "application/x-yaml"}, params={"value_only": "true"}
         )
-        if not response.ok:
-            logging.debug(f"Error accessing TCCM Terminology Service: {response}")
-            return {}
-
+        if not response.ok:            
+            raise RuntimeError(f"Error accessing TCCM Terminology Service: {response}")
+            
         # The output we receive is currently in YAML, so we need to convert that into Python dicts so we can
         # access them.
         enum_info = yaml.safe_load(response.text)

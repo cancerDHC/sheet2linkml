@@ -41,12 +41,12 @@ class TCCMService(TerminologyService):
             url, headers={"accept": "application/x-yaml"}, params={"value_only": "true"}
         )
         if response.status_code == 404:
-            logging.debug(
-                f"Field not found on TCCM Terminology Service ({field_name}): {response}"
+            logging.warning(
+                f"Field not found on TCCM Terminology Service ({model}/{entity}/{attribute}): {response}"
             )
             return {}
         elif not response.ok:
-            logging.debug(f"Error accessing TCCM Terminology Service: {response}")
+            logging.error(f"Error accessing TCCM Terminology Service: {response}")
             return {}
 
         # The output we receive is currently in YAML, so we need to convert that into Python dicts so we can

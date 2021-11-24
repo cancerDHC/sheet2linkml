@@ -19,10 +19,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Added `python-dotenv` to list of core dependencies
 
-## [Unreleased]
-
 ## [v1.0.2]
 
 * Retroactive black formatting of entire codebase
 * Github Action that checks if checked in code is black formatted
 * Compatible with Python versions 3.7 and 3.8
+
+## [v1.1.1]
+
+* Update the version of Python that the package depends on in the pyproject.toml
+
+## [v1.2.0]
+
+* Separate enums from codeable concepts

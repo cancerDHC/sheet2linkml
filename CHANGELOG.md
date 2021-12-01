@@ -7,22 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Releases](https://github.com/cancerDHC/sheet2linkml/releases)
 
-## [v1.0.0](https://github.com/cancerDHC/sheet2linkml/releases/tag/v1.0.0)
+## [Unreleased]
 
-* First working release of `sheet2linkml`
+## [v1.2.0] - 2021-11-29
+
+* Separate enums from codeable concepts
+
+## [v1.1.1] - 2021-11-11
+
+* Updated minimum Python version from 3.9 to 3.7, thanks to changes from v1.1.0
+
+## [v1.1.0] - 2021-10-28
+
+* Retroactive code style formatting of the entire codebase using Black
+* Added a Github Action that checks if checked in code is Black formatted
+* Modified the code to be compatible with Python versions 3.7 and 3.8 by using `typing.List` and `typing.Dict`
+* Added this CHANGELOG
+
+## [v1.0.1] - 2021-10-04
+
+* Improved README
+* Moved `python-dotenv` to list of core dependencies
+
+## [v1.0.0] - 2021-09-30
+
+* Added CONTRIBUTING documentation
 * Package deployed to PyPI
 * In its current state, it is meant to be used only as a dependency for ccdhmodel
 * It is compatible with Python version 3.9 and higher
 
+## [v0.0.1] - 2021-09-29
 
-## [v1.0.1](https://github.com/cancerDHC/sheet2linkml/releases/tag/v1.0.1)
+* First working release of `sheet2linkml`
 
-* Added `python-dotenv` to list of core dependencies
-
-## [Unreleased]
-
-## [v1.0.2]
-
-* Retroactive black formatting of entire codebase
-* Github Action that checks if checked in code is black formatted
-* Compatible with Python versions 3.7 and 3.8
+[Unreleased]: https://github.com/cancerDHC/sheet2linkml/compare/v1.2.0...HEAD
+[v1.2.0]: https://github.com/cancerDHC/sheet2linkml/compare/v1.1.1...v1.2.0
+[v1.1.1]: https://github.com/cancerDHC/sheet2linkml/compare/v1.1.0...v1.1.1
+[v1.1.0]: https://github.com/cancerDHC/sheet2linkml/compare/v1.0.1...v1.1.0
+[v1.0.1]: https://github.com/cancerDHC/sheet2linkml/compare/v1.0.0...v1.0.1
+[v1.0.0]: https://github.com/cancerDHC/sheet2linkml/compare/v0.0.1...v1.0.0
+[v0.0.1]: https://github.com/cancerDHC/sheet2linkml/releases/tag/v0.0.1

@@ -57,6 +57,30 @@ poetry run black ~/path/to/directory
 
 ## Release process
 
+The branch names follow the convention described by the [git flow](https://nvie.com/posts/a-successful-git-branching-model/) 
+branching model. Release branches are created to support the preparation of a new production release.
+
+Steps to follow when issuing a new release:
+
+```
+git checkout -b release-1.2 develop # Switched to a new branch "release-1.2"
+
+# minor bug fixes and preparing metadata for a release
+# e.g., version number, build dates
+# commit changes
+
+# merge changes into "main"
+git checkout main # switched to branch "main"
+git merge --no-ff release-1.2 # merge into "main" with summary of changes
+
+# merge changes into "develop"
+git checkout develop # switched to branch "develop"
+git merge --no-ff release-1.2 # merge into "develop" with summary of changes
+
+# remove release branch
+git branch -d release-1.2  # deleted branch release-1.2
+```
+
 Once the code has been merged into the `main` branch on this repo, there are two processes that need to be completed 
 to ensure a release is complete.
 

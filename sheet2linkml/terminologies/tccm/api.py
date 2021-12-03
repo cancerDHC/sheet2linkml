@@ -2,6 +2,7 @@ import logging
 
 from datetime import datetime, timezone
 from functools import lru_cache
+from typing import Dict
 
 import requests
 import yaml
@@ -22,7 +23,7 @@ class TCCMService(TerminologyService):
     # This is unlikely to change during a run and is quite expensive (since we download it from the network), so
     # we memoize it.
     @lru_cache
-    def get_enum_values_for_field(self, field_name: str):
+    def get_enum_values_for_field(self, field_name: str) -> Dict:
         """
         Returns information on the enum fields for a particular field.
 
@@ -40,7 +41,12 @@ class TCCMService(TerminologyService):
         response = requests.get(
             url, headers={"accept": "application/x-yaml"}, params={"value_only": "true"}
         )
-        if not response.ok:            
+
+        if response.status_code == 404:
+            logging.warning(f"TCCM Terminology Service cannot find {field_name}: {response}")
+            return {}
+
+        if not response.ok:
             raise RuntimeError(f"Error accessing TCCM Terminology Service: {response}")
             
         # The output we receive is currently in YAML, so we need to convert that into Python dicts so we can

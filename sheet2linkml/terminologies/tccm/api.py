@@ -41,7 +41,9 @@ class TCCMService(TerminologyService):
             url, headers={"accept": "application/x-yaml"}, params={"value_only": "true"}
         )
         if response.status_code == 404:
-            logging.debug(f"Field not found on TCCM Terminology Service ({field_name}): {response}")
+            logging.debug(
+                f"Field not found on TCCM Terminology Service ({field_name}): {response}"
+            )
             return {}
         elif not response.ok:
             logging.debug(f"Error accessing TCCM Terminology Service: {response}")

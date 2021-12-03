@@ -2,6 +2,7 @@ import logging
 
 from datetime import datetime, timezone
 from functools import lru_cache
+from typing import Dict
 
 import requests
 import yaml
@@ -22,7 +23,7 @@ class TCCMService(TerminologyService):
     # This is unlikely to change during a run and is quite expensive (since we download it from the network), so
     # we memoize it.
     @lru_cache(256)
-    def get_enum_values_for_field(self, model: str, entity: str, attribute: str):
+    def get_enum_values_for_field(self, model: str, entity: str, attribute: str) -> Dict:
         """
         Returns information on the enum fields for a particular field.
 

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Releases](https://github.com/cancerDHC/sheet2linkml/releases)
 
 ## [Unreleased]
+* Fixed bug: correctly handle 404 responses from the TCCM Terminology Service
 
 ## [v1.2.0] - 2021-11-29
 

@@ -1,7 +1,7 @@
 """
 test_command_line.py: Test the command line interfaces of this program.
 """
-
+import re
 import subprocess
 import logging
 import os
@@ -70,7 +70,9 @@ class TestCommandLine:
             for line in lines:
                 if line.startswith('generation_date:'):
                     continue
-                output += line + '\n'
+                if re.match('^\\s*code_set_version: ', line):
+                    continue
+                output += line
 
             return output
 

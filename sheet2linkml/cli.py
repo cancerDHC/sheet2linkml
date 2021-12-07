@@ -67,6 +67,9 @@ def main(output, filter_entity, logging_config, write_mappings, include_terminol
         )
         exit(1)
     google_sheet_id = os.getenv("CDM_GOOGLE_SHEET_ID")
+    if not google_sheet_id:
+        logging.error("A Google Sheet ID is required; please set environmental variable 'CDM_GOOGLE_SHEET_ID' to a Google Sheet ID.")
+        exit(1)
 
     # Arbitrarily set a CRDC-H root URI.
     crdch_root = "https://example.org/crdch"

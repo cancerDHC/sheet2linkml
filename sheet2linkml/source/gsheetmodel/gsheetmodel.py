@@ -314,7 +314,7 @@ class GSheetModel(ModelElement):
         )
 
         def fix_type_name(entity, dct, prop):
-            print(f"fix_type_name({entity}, {dct}, {prop})")
+            logging.debug(f"fix_type_name({entity}, {dct}, {prop})")
             value = dct[prop]
             if value is not None and value not in valid_types:
                 logging.warning(

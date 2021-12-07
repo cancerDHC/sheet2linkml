@@ -22,8 +22,8 @@ from dotenv import load_dotenv
 
 @click.command()
 @click.option(
-    '--google-sheet-id',
-    '-g',
+    "--google-sheet-id",
+    "-g",
     type=str,
     default=os.getenv("CDM_GOOGLE_SHEET_ID"),
     help="The Google Sheet ID that should be converted into a LinkML sheet.",
@@ -56,7 +56,14 @@ from dotenv import load_dotenv
     default=True,
     help="Controls whether we use the CCDH Terminology Service to add enumerated values for attributes.",
 )
-def main(google_sheet_id, output, filter_entity, logging_config, write_mappings, include_terminologies):
+def main(
+    google_sheet_id,
+    output,
+    filter_entity,
+    logging_config,
+    write_mappings,
+    include_terminologies,
+):
     # Display INFO log entry and up.
     if os.path.exists(logging_config):
         logging.config.fileConfig(logging_config)
@@ -76,7 +83,9 @@ def main(google_sheet_id, output, filter_entity, logging_config, write_mappings,
         exit(1)
     google_sheet_id = os.getenv("CDM_GOOGLE_SHEET_ID")
     if not google_sheet_id:
-        logging.error("A Google Sheet ID is required; please set environmental variable 'CDM_GOOGLE_SHEET_ID' to a Google Sheet ID.")
+        logging.error(
+            "A Google Sheet ID is required; please set environmental variable 'CDM_GOOGLE_SHEET_ID' to a Google Sheet ID."
+        )
         exit(1)
 
     # Arbitrarily set a CRDC-H root URI.
@@ -139,6 +148,7 @@ def main(google_sheet_id, output, filter_entity, logging_config, write_mappings,
             Mappings.write_to_file(model.mappings, filename=write_mappings, model=model)
 
     exit(0)
+
 
 if __name__ == "__main__":
     main()

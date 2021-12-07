@@ -368,7 +368,9 @@ class Attribute:
             return None
 
         # Look up enumerations on the Terminology Service.
-        enum_info = self.terminology_service.get_enum_values_for_field('CRDC-H', self.entity.name, self.name)
+        enum_info = self.terminology_service.get_enum_values_for_field(
+            "CRDC-H", self.entity.name, self.name
+        )
         permissible_values = {}
         for pv in enum_info.get("permissible_values", []):
             text = pv.get("text")

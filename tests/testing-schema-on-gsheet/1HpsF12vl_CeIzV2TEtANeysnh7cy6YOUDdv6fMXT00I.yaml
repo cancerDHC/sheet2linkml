@@ -1,0 +1,550 @@
+name: CRDC-H
+notes:
+- Derived from [Test schema for sheet2linkml](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I)
+id: https://example.org/crdch
+imports:
+- linkml:types
+license: https://creativecommons.org/publicdomain/zero/1.0/
+prefixes:
+  linkml: https://w3id.org/linkml/
+  crdch: https://example.org/crdch/
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  GDC: http://example.org/gdc/
+  PDC: http://example.org/pdc/
+  ICDC: http://example.org/icdc/
+  HTAN: http://example.org/htan/
+default_prefix: crdch
+types:
+  crdch_string:
+    name: crdch_string
+    description: A sequence of Unicode characters.  There are no limits on the number
+      of characters in the string.
+    notes:
+    - Derived from [crdch_string in sheet Primitives](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1915311830)
+    typeof: string
+  crdch_integer:
+    name: crdch_integer
+    description: An integer number.  This data type is based on the decimal type,
+      but the fractional component is not allowed.  There are no restrictions on the
+      size of the integer.
+    notes:
+    - Derived from [crdch_integer in sheet Primitives](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1915311830)
+    typeof: integer
+  crdch_decimal:
+    name: crdch_decimal
+    description: A rational number that has a decimal representation.  This data type
+      does not restrict the size or precision of the number.
+    notes:
+    - Derived from [crdch_decimal in sheet Primitives](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1915311830)
+    typeof: decimal
+  crdch_boolean:
+    name: crdch_boolean
+    description: "Value representing either \u201Ctrue\u201D or \u201Cfalse\u201D\
+      .  Permissible values (case-sensitive) = \u201Ctrue\u201D, \u201Cfalse\u201D\
+      , \u201C1\u201D, \u201C0\u201D."
+    notes:
+    - Derived from [crdch_boolean in sheet Primitives](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1915311830)
+    typeof: boolean
+  crdch_dateTime:
+    name: crdch_dateTime
+    description: A date and time string specified using a specialized concatenation
+      of the date and time data types, in the general format YYYY-MM-DDThh:mm:ss+zz:zz.
+    notes:
+    - Derived from [crdch_dateTime in sheet Primitives](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1915311830)
+    typeof: datetime
+  crdch_curie:
+    name: crdch_curie
+    description: "A compact URI (CURIE), which is a bipartite identifier of the form\
+      \ prefix:reference, in which the prefix is a convenient abbreviation of a URI.\
+      \  It is expressed in the format \u201Cprefix:reference\u201D. When a mapping\
+      \ of prefix to base URI is provided (external to this data type), a CURIE may\
+      \ be mapped to a URI."
+    notes:
+    - Derived from [crdch_curie in sheet Primitives](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1915311830)
+    typeof: uriorcurie
+  crdch_code:
+    name: crdch_code
+    description: ''
+    notes:
+    - Derived from [crdch_code in sheet Primitives](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1915311830)
+    typeof: string
+enums:
+  enum_CRDCH_Subject_species:
+    name: enum_CRDCH_Subject_species
+    comments:
+    - 'Name according to TCCM: ""'
+    code_set: https://terminology.ccdh.io/enumerations/CRDC-H.Subject.species
+    code_set_version: ''
+  enum_CRDCH_Subject_breed:
+    name: enum_CRDCH_Subject_breed
+    description: A label given to a group of animals homogeneous in appearance and
+      other characteristics that distinguish it from other animals of the same species.
+    notes:
+    - Derived from [Subject.breed in sheet O_CCDH Enums](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1251633595)
+    permissible_values:
+      Akita:
+        text: Akita
+        description: ''
+      American Staffordshire Terrier:
+        text: American Staffordshire Terrier
+        description: ''
+      Australian Shepherd:
+        text: Australian Shepherd
+        description: ''
+      Basset Hound:
+        text: Basset Hound
+        description: ''
+      Beagle:
+        text: Beagle
+        description: ''
+      Belgian Malinois:
+        text: Belgian Malinois
+        description: ''
+      Bernese Mountain Dog:
+        text: Bernese Mountain Dog
+        description: ''
+      Black and Tan Coonhound:
+        text: Black and Tan Coonhound
+        description: ''
+  enum_CRDCH_Subject_sex:
+    name: enum_CRDCH_Subject_sex
+    comments:
+    - 'Name according to TCCM: ""'
+    code_set: https://terminology.ccdh.io/enumerations/CRDC-H.Subject.sex
+    code_set_version: ''
+  enum_CRDCH_Subject_ethnicity:
+    name: enum_CRDCH_Subject_ethnicity
+    comments:
+    - 'Name according to TCCM: ""'
+    code_set: https://terminology.ccdh.io/enumerations/CRDC-H.Subject.ethnicity
+    code_set_version: ''
+  enum_CRDCH_Subject_race:
+    name: enum_CRDCH_Subject_race
+    comments:
+    - 'Name according to TCCM: ""'
+    code_set: https://terminology.ccdh.io/enumerations/CRDC-H.Subject.race
+    code_set_version: ''
+  enum_CRDCH_Subject_vital_status:
+    name: enum_CRDCH_Subject_vital_status
+    comments:
+    - 'Name according to TCCM: ""'
+    code_set: https://terminology.ccdh.io/enumerations/CRDC-H.Subject.vital_status
+    code_set_version: ''
+  enum_CRDCH_Subject_cause_of_death:
+    name: enum_CRDCH_Subject_cause_of_death
+    comments:
+    - 'Name according to TCCM: ""'
+    code_set: https://terminology.ccdh.io/enumerations/CRDC-H.Subject.cause_of_death
+    code_set_version: ''
+classes:
+  Subject:
+    name: Subject
+    description: Demographics and other administrative information about an individual
+      or animal receiving care or other health-related services.
+    notes:
+    - Derived from [Subject in sheet Subject](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=79247765)
+    is_a: Entity
+    attributes:
+      id:
+        name: id
+        description: The 'logical' identifier of the entity within the system of record.  The
+          simple value of this attribute stands for an identifier of this data object
+          within the system, it can be used as a reference from other objects within
+          the same system (i.e. primary and foreign keys), and it should be unique
+          per type of object. The same data object copied to a different system will
+          likely have a different "id" in the new system since "id" values are system
+          specific and do not represent persistent business identifiers. Business
+          identifiers are assigned outside the information system and are captured
+          in the "identifier" field. The "id" field is more likely to be a serially
+          or randomly generated value that is assigned to the data object as it is
+          created in a system.
+        notes:
+        - 'Cardinality: 1..1'
+        comments:
+        - 'FHIR naming conventions are followed here, where ''id'' is used for logical
+          identifiers, and ''identifier'' for business identifiers.   The identified
+          entity may have a different ''id'' in a different system, and have many
+          external business ''identifiers'' associated with it. If an "id" value can
+          also be considered to be a business identifier, and should be transmissible
+          to other systems, it should be duplicated in the "identifier" attribute
+          along with the additional metadata needed to give context to the value of
+          "id". An entity in this model that does not have an "id" field is considered
+          to be an embeddable entity that can not stand on its own. '
+        examples:
+        - value: ''
+        domain: Subject
+        multivalued: false
+        range: crdch_string
+        required: true
+      identifier:
+        name: identifier
+        exact_mappings:
+        - ICDC:Case.patient_id
+        description: A 'business' identifier or accession number for the entity, typically
+          as provided by an external system or authority, that are globally unique
+          and persist across implementing systems. Also, since these identifiers are
+          created outside the information system through a specific business process,
+          the Identifier type has additional attributes to capture this additional
+          metadata so the actual identifier values are qualified by the context that
+          created those values. This additional context allows "identifier" instances
+          to be transmitted as business data across systems while still being able
+          to trace them back to the system of origin.
+        notes:
+        - 'Cardinality: 0..m'
+        comments:
+        - FHIR naming conventions are followed here, where 'id' is used for logical
+          identifiers which are unique only within a given system, and 'identifier'
+          for business identifiers, which are used to connect entities or share content
+          across systems.  The complex 'Identifier' data type is used  to capture
+          the identifier itself, along with metadata about its source.
+        examples:
+        - value: ''
+        domain: Subject
+        multivalued: true
+        inlined_as_list: true
+        range: Entity
+        required: false
+      species:
+        name: species
+        description: The scientific binomial name for the species of the subject (e.g.
+          Homo sapiens, Mus musculus, etc.)
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: Homo sapiens
+        - value: Canis familiaris
+        - value: Mus musculus
+        values_from: crdch:enum_CRDCH_Subject_species
+        domain: Subject
+        multivalued: false
+        range: CodeableConcept
+        required: false
+      breed:
+        name: breed
+        exact_mappings:
+        - ICDC:Demographic.breed
+        description: A label given to a group of animals homogeneous in appearance
+          and other characteristics that distinguish it from other animals of the
+          same species.
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: Affenpinscher
+        - value: Afghan Hound
+        - value: Airedale Terrier
+        - value: Akita
+        values_from: crdch:enum_CRDCH_Subject_breed
+        domain: Subject
+        multivalued: false
+        range: CodeableConcept
+        required: false
+      sex:
+        name: sex
+        exact_mappings:
+        - ICDC:Demographic.sex
+        - GDC:Demographic.gender
+        - PDC:Demographic.gender
+        - HTAN:Demographics.Gender
+        description: The biologic character or quality that distinguishes male and
+          female from one another as expressed by analysis of the person's gonadal,
+          morphologic (internal and external), chromosomal, and hormonal characteristics.
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: Female
+        - value: Intersex
+        - value: Male
+        - value: Not Reported
+        - value: Unknown
+        - value: Unspecified
+        values_from: crdch:enum_CRDCH_Subject_sex
+        domain: Subject
+        multivalued: false
+        range: CodeableConcept
+        required: false
+      ethnicity:
+        name: ethnicity
+        exact_mappings:
+        - GDC:Clinical.ethnicity
+        - GDC:Demographic.ethnicity
+        - PDC:Demographic.ethnicity
+        - HTAN:Demographics.Ethnicity
+        description: An individual's self-described social and cultural grouping,
+          specifically whether an individual describes themselves as Hispanic or Latino.
+          The provided values are based on the categories defined by the U.S. Office
+          of Management and Business and used by the U.S. Census Bureau
+        notes:
+        - 'Cardinality: 0..1'
+        comments:
+        - Applicable only when Subject.species is Homo Sapiens
+        examples:
+        - value: Hispanic or Latino
+        - value: Not Allowed To Collect
+        - value: Not Hispanic or Latino
+        - value: Not Reported
+        - value: Unknown
+        values_from: crdch:enum_CRDCH_Subject_ethnicity
+        domain: Subject
+        multivalued: false
+        range: CodeableConcept
+        required: false
+      race:
+        name: race
+        exact_mappings:
+        - GDC:Clinical.race
+        - GDC:Demographic.race
+        - PDC:Demographic.race
+        - HTAN:Demographics.Race
+        description: An arbitrary classification of a taxonomic group that is a division
+          of a species. It usually arises as a consequence of geographical isolation
+          within a species and is characterized by shared heredity, physical attributes
+          and behavior, and in the case of humans, by common history, nationality,
+          or geographic distribution. The provided values are based on the categories
+          defined by the U.S. Office of Management and Business and used by the U.S.
+          Census Bureau.
+        notes:
+        - 'Cardinality: 0..m'
+        examples:
+        - value: American Indian or Alaska Native
+        - value: Asian
+        - value: Black or African American
+        - value: Native Hawaiian or other Pacific Islander
+        - value: Not Allowed To Collect
+        - value: Not Reported
+        - value: Unknown
+        - value: White
+        values_from: crdch:enum_CRDCH_Subject_race
+        domain: Subject
+        multivalued: true
+        range: CodeableConcept
+        required: false
+      year_of_birth:
+        name: year_of_birth
+        exact_mappings:
+        - GDC:Demographic.year_of_birth
+        - PDC:Demographic.year_of_birth
+        - ICDC:Demographic.date_of_birth
+        - HTAN:Demographics.YearOfBirth
+        description: Numeric value to represent the calendar year in which an individual
+          was born.
+        notes:
+        - 'Cardinality: 0..1'
+        comments:
+        - Applicable only when Subject.species is Homo Sapiens
+        examples:
+        - value: ''
+        domain: Subject
+        multivalued: false
+        range: crdch_integer
+        required: false
+      vital_status:
+        name: vital_status
+        exact_mappings:
+        - GDC:Demographic.vital_status
+        - PDC:Demographic.vital_status
+        - HTAN:Demographics.VitalStatus
+        description: Coded value indicating the state or condition of being living
+          or deceased; also includes the case where the vital status is unknown.
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: Alive
+        - value: Dead
+        - value: Unknown
+        - value: Not Reported
+        values_from: crdch:enum_CRDCH_Subject_vital_status
+        domain: Subject
+        multivalued: false
+        range: CodeableConcept
+        required: false
+      age_at_death:
+        name: age_at_death
+        close_mappings:
+        - GDC:Demographic.days_to_death
+        - PDC:Demographic.days_to_death
+        description: The age of an individual at the time of death, expressed in days
+          since birth
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: ''
+        domain: Subject
+        multivalued: false
+        range: Entity
+        required: false
+      year_of_death:
+        name: year_of_death
+        exact_mappings:
+        - GDC:Demographic.year_of_death
+        - PDC:Demographic.year_of_death
+        description: Numeric value to represent the calendar year in which an individual
+          died.
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: ''
+        domain: Subject
+        multivalued: false
+        range: crdch_integer
+        required: false
+      cause_of_death:
+        name: cause_of_death
+        exact_mappings:
+        - GDC:Demographic.cause_of_death
+        - PDC:Demographic.cause_of_death
+        description: Coded value indicating the circumstance or condition that results
+          in the death of the subject.
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: Cancer Related
+        - value: Cardiovascular Disorder, NOS
+        - value: End-stage Renal Disease
+        - value: ''
+        values_from: crdch:enum_CRDCH_Subject_cause_of_death
+        domain: Subject
+        multivalued: false
+        range: CodeableConcept
+        required: false
+  CodeableConcept:
+    name: CodeableConcept
+    description: A representation of a concept that may be defined by or mapped to
+      one or more codes in code systems (terminologies, ontologies, dictionaries,
+      code sets, etc) - but may also be defined by the provision of text.
+    notes:
+    - Derived from [CodeableConcept in sheet CodeableConcept](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=696864465)
+    comments:
+    - 'More than one code may be used in CodeableConcept. The concept may be coded
+      multiple times in different code systems (or even multiple times in the same
+      code systems, where multiple forms are possible). Each Coding is a representation
+      of the concept as described above and may have slightly different granularity
+      due to the differences in the definitions of the underlying codes. There is
+      no meaning associated with the ordering of Coding within a CodeableConcept.
+      A typical use of CodeableConcept is to send the local code that the concept
+      was coded with, and also one or more translations to publicly defined code systems
+      such as LOINC or SNOMED CT. '
+    is_a: Entity
+    attributes:
+      coding:
+        name: coding
+        description: A reference to a code defined by a terminology system
+        notes:
+        - 'Cardinality: 0..m'
+        examples:
+        - value: ''
+        domain: CodeableConcept
+        multivalued: true
+        inlined_as_list: true
+        range: Coding
+        required: false
+      text:
+        name: text
+        description: A human language representation of the concept represented by
+          the Coding.
+        notes:
+        - 'Cardinality: 0..1'
+        comments:
+        - 'The text attribute represents the concept as entered or chosen by the user;
+          often the value of text is the same as a display of one of the codings.  A
+          concept that does not have an appropriate or known coding can be represented
+          using free-text in the text attribute. '
+        examples:
+        - value: ''
+        domain: CodeableConcept
+        multivalued: false
+        range: crdch_string
+        required: false
+  Coding:
+    name: Coding
+    description: A structured representation of a coded/enumerated data value, that
+      includes additional metadata about the code and code system.
+    notes:
+    - Derived from [Coding in sheet Coding](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=964403102)
+    is_a: Entity
+    attributes:
+      code:
+        name: code
+        description: The symbol/value of the code, as defined by the code system.
+        notes:
+        - 'Cardinality: 1..1'
+        examples:
+        - value: ''
+        domain: Coding
+        multivalued: false
+        range: crdch_string
+        required: true
+      label:
+        name: label
+        description: A human-readable name for the code, as defined by the code system.
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: ''
+        domain: Coding
+        multivalued: false
+        range: crdch_string
+        required: false
+      system:
+        name: system
+        description: The URL of the code system where the code is defined.
+        notes:
+        - 'Cardinality: 1..1'
+        examples:
+        - value: ''
+        domain: Coding
+        multivalued: false
+        range: crdch_string
+        required: true
+      system_version:
+        name: system_version
+        description: The version of the code system.
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: ''
+        domain: Coding
+        multivalued: false
+        range: crdch_string
+        required: false
+      value_set:
+        name: value_set
+        description: The identifier of the enumeration / value set that the code is
+          a part of in the context of this element
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: ''
+        domain: Coding
+        multivalued: false
+        range: crdch_string
+        required: false
+      value_set_version:
+        name: value_set_version
+        description: The version of the enuemration / value set the code is pulled
+          from
+        notes:
+        - 'Cardinality: 0..1'
+        examples:
+        - value: ''
+        domain: Coding
+        multivalued: false
+        range: crdch_string
+        required: false
+      tag:
+        name: tag
+        description: original value  |  harmonized value  |
+        notes:
+        - 'Cardinality: 0..m'
+        examples:
+        - value: ''
+        domain: Coding
+        multivalued: true
+        inlined_as_list: true
+        range: crdch_string
+        required: false
+  Entity:
+    name: Entity
+    description: Any resource that has its own identifier
+    notes:
+    - Derived from [Entity in sheet Entity](https://docs.google.com/spreadsheets/d/1HpsF12vl_CeIzV2TEtANeysnh7cy6YOUDdv6fMXT00I/edit#gid=1810442705)
+generation_date: '2021-12-07T07:17:22.116646+00:00'

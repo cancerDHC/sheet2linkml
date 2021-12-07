@@ -35,6 +35,16 @@ source .venv/bin/activate
 python -m pip install sheet2linkml
 ```
 
+## Authorization
+
+sheet2linkml uses the [`pygsheets` library](https://github.com/nithinmurali/pygsheets) in order to access sheets in
+Google Drive. To authorize it to access your Google Sheets, you will need to create and download Google Drive client credentials. First,
+[enable the Google Drive API](https://developers.google.com/drive/api/v3/enable-drive-api). After the API is enabled, 
+[create and download the client credentials](https://www.iperiusbackup.net/en/how-to-enable-google-drive-api-and-get-client-credentials/)
+from the [Google API Console](https://console.developers.google.com/). Save the file as `google_api_credentials.json` in
+the root directory of this project. [Detailed instructions and screenshots](https://pygsheets.readthedocs.io/en/stable/authorization.html)
+are also available from the [`pygsheets` documentation](https://pygsheets.readthedocs.io/).
+
 ## Command Line Client Usage
 
 Identify the Google Sheet that you want to convert to LinkML. Note that sheet2linkml is not currently a general-purpose Google Sheet to LinkML converter. It will only work with Google Sheets that have been written in a particular, currently undefined format.
@@ -45,7 +55,7 @@ Contact your CCDH colleagues to obtain the correct sheet ID and assert it either
 export CDM_GOOGLE_SHEET_ID=WbM2Jr869ofmdcSmhX_1E0aLWvnK2-gr47Mo_tzuQKWy
 ```
 
-A `google_api_credentials.json` file is also required in the root of this repo. Documentation is forthcoming.
+A `google_api_credentials.json` file is also required in the root of this repo as detailed in the Authorization section above.
 
 And the user is responsible for defining 
 - `~/path/to/crdch_model.yaml`

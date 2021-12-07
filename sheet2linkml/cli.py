@@ -60,6 +60,10 @@ def main(output, filter_entity, logging_config, write_mappings, include_terminol
     google_api_credentials = os.getenv(
         "GOOGLE_API_CREDENTIALS", "google_api_credentials.json"
     )
+    if not os.path.exists(google_api_credentials):
+        logging.error(f"Google API Credential file '{google_api_credentials}' not found: please see " +
+                      "https://github.com/cancerDHC/sheet2linkml#authorization for information on creating this file.")
+        exit(1)
     google_sheet_id = os.getenv("CDM_GOOGLE_SHEET_ID")
 
     # Arbitrarily set a CRDC-H root URI.

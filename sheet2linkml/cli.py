@@ -22,6 +22,13 @@ from dotenv import load_dotenv
 
 @click.command()
 @click.option(
+    '--google-sheet-id',
+    '-g',
+    type=str,
+    default=os.getenv("CDM_GOOGLE_SHEET_ID"),
+    help="The Google Sheet ID that should be converted into a LinkML sheet.",
+)
+@click.option(
     "--output",
     "-o",
     type=click.Path(),
@@ -49,7 +56,7 @@ from dotenv import load_dotenv
     default=True,
     help="Controls whether we use the CCDH Terminology Service to add enumerated values for attributes.",
 )
-def main(output, filter_entity, logging_config, write_mappings, include_terminologies):
+def main(google_sheet_id, output, filter_entity, logging_config, write_mappings, include_terminologies):
     # Display INFO log entry and up.
     logging.config.fileConfig(logging_config)
 

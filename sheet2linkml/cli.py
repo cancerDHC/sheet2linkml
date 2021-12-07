@@ -58,7 +58,8 @@ from dotenv import load_dotenv
 )
 def main(google_sheet_id, output, filter_entity, logging_config, write_mappings, include_terminologies):
     # Display INFO log entry and up.
-    logging.config.fileConfig(logging_config)
+    if os.path.exists(logging_config):
+        logging.config.fileConfig(logging_config)
 
     # Load environemental variables from `.env` if one is present.
     load_dotenv()

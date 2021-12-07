@@ -138,6 +138,7 @@ def main(google_sheet_id, output, filter_entity, logging_config, write_mappings,
         if write_mappings:
             Mappings.write_to_file(model.mappings, filename=write_mappings, model=model)
 
+    exit(0)
 
 if __name__ == "__main__":
     main()

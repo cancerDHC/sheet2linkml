@@ -22,7 +22,7 @@ class TCCMService(TerminologyService):
     # This is unlikely to change during a run and is quite expensive (since we download it from the network), so
     # we memoize it.
     @lru_cache
-    def get_enum_values_for_field(self, field_name: str):
+    def get_enum_values_for_field(self, model: str, entity: str, attribute: str):
         """
         Returns information on the enum fields for a particular field.
 
@@ -31,7 +31,7 @@ class TCCMService(TerminologyService):
         """
 
         # Construct the URL we need to access the enumeration information.
-        url = f"{self.base_url}/enumerations/{field_name}"
+        url = f"{self.base_url}/enumerations/{model}/{entity}/{attribute}"
         logging.debug(f"Querying TCCM for attribute info: {url}")
 
         # Query the URL.

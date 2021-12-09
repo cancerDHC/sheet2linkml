@@ -39,11 +39,11 @@ jobs:
       #       load cached venv if cache exists
       #----------------------------------------------
       - name: Load cached venv
-        id: cached-poetry-dependencies
+        id: cache-poetry
         uses: actions/cache@v2
         with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+          path: ~/.local
+          key: ${{ runner.os }}-python-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
 
       #----------------------------------------------
       # install dependencies
@@ -57,7 +57,7 @@ jobs:
       - name: Install dependencies
         env:
           SHEET2LINKML_GOOGLE_SERVICE_ACCT: ${{ secrets.Sheet2LinkMLGoogleServiceAcct  }}
-        run: poetry run pytest
+        run: poetry run pytest -svvv
 
       #----------------------------------------------
       #             check formatting

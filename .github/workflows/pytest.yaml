@@ -6,8 +6,7 @@ name: Test and check code style
 on: [push, pull_request]
 
 jobs:
-  black:
-
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -63,7 +62,7 @@ jobs:
       #----------------------------------------------
       #             check formatting
       #----------------------------------------------
-      - name: Code formatting with black
+      - name: Code style with black
         run: |
            # run black in check mode
            # if files are not formatted correctly, the build will not go through

@@ -3,7 +3,7 @@ import re
 import urllib.parse
 
 from typing import List, Dict
-from functools import cached_property
+from functools import lru_cache
 
 from sheet2linkml.terminologies.service import TerminologyService
 from sheet2linkml.model import ModelElement
@@ -67,7 +67,8 @@ class Entity(ModelElement):
             if row.get(EntityWorksheet.COL_ATTRIBUTE_NAME) is not None
         ]
 
-    @cached_property
+    @property
+    @lru_cache
     def attributes(self):
         """
         Returns a list of attributes in this entity. We construct this by wrapping the
@@ -157,7 +158,8 @@ class Entity(ModelElement):
 
         return f"[{self.name} in sheet {self.worksheet.title}]({self.worksheet.url})"
 
-    @cached_property
+    @property
+    @lru_cache
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this entity.
@@ -309,7 +311,8 @@ class Attribute:
 
         return min_count, max_count
 
-    @cached_property
+    @property
+    @lru_cache
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this attribute.

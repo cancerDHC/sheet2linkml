@@ -2,7 +2,7 @@ import re
 import logging
 
 from typing import List, Dict
-from functools import cached_property, lru_cache
+from functools import lru_cache
 from datetime import datetime, timezone
 
 import pygsheets
@@ -185,7 +185,8 @@ class GSheetModel(ModelElement):
             result.extend(worksheet.enums)
         return result
 
-    @cached_property
+    @property
+    @lru_cache
     def mappings(self) -> List[Mappings.Mapping]:
         """Return a list of all the mappings in this LinkML document."""
         mappings = [

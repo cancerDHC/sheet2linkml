@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Feature: updated @cached_property with @property @lru_cache to support Python 3.7.
 * Bug: updated CCDH Terminology API endpoint for enumerations.
 * Bug: fixed code to correctly handle 404 responses from the TCCM Terminology Service.
+* Bug: replaced unnecessary print() in GSheetModel with logging.error().
 
 ## [v1.2.0] - 2021-11-29
 

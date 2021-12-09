@@ -34,7 +34,7 @@ class GSheetModel(ModelElement):
         "https://www.googleapis.com/auth/drive.metadata.readonly",
     ]
 
-    def __init__(self, google_sheet_oath2_credentials: str, google_sheet_id: str):
+    def __init__(self, google_sheet_client, google_sheet_id: str):
         """
         Create a new Google Sheet Model. This will create a model that uses the specified
         Google Sheet as an input.
@@ -52,9 +52,7 @@ class GSheetModel(ModelElement):
         :param google_sheet_id: The Google Sheet ID containing the model.
         """
 
-        self.client = pygsheets.authorize(
-            client_secret=google_sheet_oath2_credentials, scopes=self.SCOPES
-        )
+        self.client = google_sheet_client
         self.sheet = self.client.open_by_key(google_sheet_id)
 
         # TODO: at some point, we should read the version number from the Google Sheets document... somehow.

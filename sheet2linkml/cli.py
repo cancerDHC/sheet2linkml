@@ -18,7 +18,7 @@ from sheet2linkml.terminologies.tccm.api import TCCMService
 
 from linkml_runtime.dumpers import yaml_dumper
 from dotenv import load_dotenv
-
+import pygsheets
 
 @click.command()
 @click.option(
@@ -72,27 +72,39 @@ def main(
     load_dotenv()
 
     # Read in Google API credentials.
-    google_api_credentials = os.getenv(
-        "GOOGLE_API_CREDENTIALS", "google_api_credentials.json"
-    )
-    if not os.path.exists(google_api_credentials):
-        logging.error(
-            f"Google API Credential file '{google_api_credentials}' not found: please see "
-            + "https://github.com/cancerDHC/sheet2linkml#authorization for information on creating this file."
+    if 'SHEET2LINKML_GOOGLE_SERVICE_ACCT' in os.environ:
+        # If an environment variable SHEET2LINKML_GOOGLE_SERVICE_ACCT is set, use it as a
+        # Service Account (https://pygsheets.readthedocs.io/en/stable/authorization.html#service-account)
+        pygclient = pygsheets.authorize(
+            service_account_env_var='SHEET2LINKML_GOOGLE_SERVICE_ACCT',
+            scopes=GSheetModel.SCOPES
         )
-        exit(1)
-    google_sheet_id = os.getenv("CDM_GOOGLE_SHEET_ID")
+    else:
+        # Otherwise, look for the path to Google API Credentials in google_api_credentials.json.
+        google_api_credentials = os.getenv(
+            "GOOGLE_API_CREDENTIALS", "google_api_credentials.json"
+        )
+        if not os.path.exists(google_api_credentials):
+            logging.error(
+                f"Google API Credential file '{google_api_credentials}' not found: please see "
+                + "https://github.com/cancerDHC/sheet2linkml#authorization for information on creating this file."
+            )
+            exit(1)
+        pygclient = pygsheets.authorize(
+            client_secret=google_api_credentials, scopes=GSheetModel.SCOPES
+        )
+
+    # Arbitrarily set a CRDC-H root URI.
+    crdch_root = "https://example.org/crdch"
+
     if not google_sheet_id:
         logging.error(
             "A Google Sheet ID is required; please set environmental variable 'CDM_GOOGLE_SHEET_ID' to a Google Sheet ID."
         )
         exit(1)
 
-    # Arbitrarily set a CRDC-H root URI.
-    crdch_root = "https://example.org/crdch"
-
     # Load the Google Sheet model and add the development version number.
-    model = GSheetModel(google_api_credentials, google_sheet_id)
+    model = GSheetModel(pygclient, google_sheet_id)
     if include_terminologies:
         model.use_terminology_service(TCCMService("https://terminology.ccdh.io"))
     logging.info(f"Google Sheet loaded: {model}")

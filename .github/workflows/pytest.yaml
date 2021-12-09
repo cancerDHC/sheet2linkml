@@ -53,6 +53,12 @@ jobs:
         run: poetry install --no-interaction
 
       #----------------------------------------------
+      # install tests
+      #----------------------------------------------
+      - name: Install dependencies
+        run: poetry run pytest
+
+      #----------------------------------------------
       #             check formatting
       #----------------------------------------------
       - name: Code formatting with black

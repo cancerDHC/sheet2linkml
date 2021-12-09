@@ -38,7 +38,7 @@ pygsheets = "^2.0.4"
 PyYAML = "^5.4.1"
 setuptools = "^52.0.0"
 python-dotenv = "^0.15.0"
-black = "^21.9b0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
+black = "^21.9b0"

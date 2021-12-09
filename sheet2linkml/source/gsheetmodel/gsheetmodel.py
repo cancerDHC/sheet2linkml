@@ -102,7 +102,6 @@ class GSheetModel(ModelElement):
 
     # Decorator that can save time when associated operation is periodically called with the same arguments.
     @property
-    @lru_cache(128)
     def entity_worksheets(self) -> List[EntityWorksheet]:
         """
         A list of worksheets available in this model.
@@ -140,7 +139,6 @@ class GSheetModel(ModelElement):
         ]
 
     @property
-    @lru_cache(128)
     def entities(self) -> List[Entity]:
         """
         :return: The list of entities in this model.
@@ -188,7 +186,6 @@ class GSheetModel(ModelElement):
         return result
 
     @property
-    @lru_cache(128)
     def mappings(self) -> List[Mappings.Mapping]:
         """Return a list of all the mappings in this LinkML document."""
         mappings = [

@@ -68,7 +68,6 @@ class Entity(ModelElement):
         ]
 
     @property
-    @lru_cache(128)
     def attributes(self):
         """
         Returns a list of attributes in this entity. We construct this by wrapping the
@@ -159,7 +158,6 @@ class Entity(ModelElement):
         return f"[{self.name} in sheet {self.worksheet.title}]({self.worksheet.url})"
 
     @property
-    @lru_cache(128)
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this entity.
@@ -312,7 +310,6 @@ class Attribute:
         return min_count, max_count
 
     @property
-    @lru_cache(128)
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this attribute.

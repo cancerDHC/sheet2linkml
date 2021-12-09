@@ -42,7 +42,7 @@ Identify the Google Sheet that you want to convert to LinkML. Note that sheet2li
 Contact your CCDH colleagues to obtain the correct sheet ID and assert it either in a `.env` file or in the shell, like this:
 
 ```shell
-export CDM_GOOGLE_SHEET_ID=WbM2Jr869ofmdcSmhX_1E0aLWvnK2-gr47Mo_tzuQKWy
+export CDM_GOOGLE_SHEET_ID=1oWS7cao-fgz2MKWtyr8h2dEL9unX__0bJrWKv6mQmM4
 ```
 
 A `google_api_credentials.json` file is also required in the root of this repo. Documentation is forthcoming.

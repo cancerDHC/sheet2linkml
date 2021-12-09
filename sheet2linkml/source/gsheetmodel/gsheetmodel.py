@@ -100,8 +100,6 @@ class GSheetModel(ModelElement):
 
         return result
 
-    # Decorator that can save time when associated operation is periodically called with the same arguments.
-    @property
     def entity_worksheets(self) -> List[EntityWorksheet]:
         """
         A list of worksheets available in this model.

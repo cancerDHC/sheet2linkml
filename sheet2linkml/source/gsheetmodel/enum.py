@@ -152,7 +152,7 @@ class Enum(ModelElement):
         return f"[{self.name} in sheet {self.worksheet.title}]({self.worksheet.url})"
 
     @property
-    @lru_cache
+    @lru_cache(128)
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this enum.
@@ -266,7 +266,7 @@ class EnumValue:
         return f'{self.__class__.__name__} named "{self.name}" containing {len(self.row)} properties'
 
     @property
-    @lru_cache
+    @lru_cache(128)
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this enum value.

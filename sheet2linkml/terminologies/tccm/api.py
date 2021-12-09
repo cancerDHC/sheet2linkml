@@ -21,7 +21,7 @@ class TCCMService(TerminologyService):
     # Decorator that can save time when associated operation is periodically called with the same arguments.
     # This is unlikely to change during a run and is quite expensive (since we download it from the network), so
     # we memoize it.
-    @lru_cache
+    @lru_cache(256)
     def get_enum_values_for_field(self, model: str, entity: str, attribute: str):
         """
         Returns information on the enum fields for a particular field.

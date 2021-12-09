@@ -20,6 +20,7 @@ from linkml_runtime.dumpers import yaml_dumper
 from dotenv import load_dotenv
 import pygsheets
 
+
 @click.command()
 @click.option(
     "--google-sheet-id",
@@ -72,12 +73,12 @@ def main(
     load_dotenv()
 
     # Read in Google API credentials.
-    if 'SHEET2LINKML_GOOGLE_SERVICE_ACCT' in os.environ:
+    if "SHEET2LINKML_GOOGLE_SERVICE_ACCT" in os.environ:
         # If an environment variable SHEET2LINKML_GOOGLE_SERVICE_ACCT is set, use it as a
         # Service Account (https://pygsheets.readthedocs.io/en/stable/authorization.html#service-account)
         pygclient = pygsheets.authorize(
-            service_account_env_var='SHEET2LINKML_GOOGLE_SERVICE_ACCT',
-            scopes=GSheetModel.SCOPES
+            service_account_env_var="SHEET2LINKML_GOOGLE_SERVICE_ACCT",
+            scopes=GSheetModel.SCOPES,
         )
     else:
         # Otherwise, look for the path to Google API Credentials in google_api_credentials.json.

@@ -33,6 +33,8 @@ class TestCommandLine:
         """
         (errno, stdout, stderr) = execute_sheet2linkml(["--help"])
 
+        print(stderr)
+
         assert errno == 0
         assert "Usage: sheet2linkml" in stdout
         assert "--help" in stdout
@@ -58,6 +60,7 @@ class TestCommandLine:
             ]
         )
 
+        print(stderr)
         assert (
             'INFO: Google Sheet loaded: GSheetModel with an underlying Google Sheet titled "Test schema for sheet2linkml" containing 8 worksheets'
             in stderr

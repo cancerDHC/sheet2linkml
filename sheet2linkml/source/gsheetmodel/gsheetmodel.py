@@ -136,7 +136,6 @@ class GSheetModel(ModelElement):
             for worksheet in entity_worksheets
         ]
 
-    @property
     def entities(self) -> List[Entity]:
         """
         :return: The list of entities in this model.

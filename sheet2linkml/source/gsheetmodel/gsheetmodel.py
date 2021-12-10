@@ -2,7 +2,7 @@ import re
 import logging
 
 from typing import List, Dict
-from functools import cached_property, lru_cache
+from functools import lru_cache
 from datetime import datetime, timezone
 
 import pygsheets
@@ -34,7 +34,7 @@ class GSheetModel(ModelElement):
         "https://www.googleapis.com/auth/drive.metadata.readonly",
     ]
 
-    def __init__(self, google_sheet_oath2_credentials: str, google_sheet_id: str):
+    def __init__(self, google_sheet_client, google_sheet_id: str):
         """
         Create a new Google Sheet Model. This will create a model that uses the specified
         Google Sheet as an input.
@@ -52,9 +52,7 @@ class GSheetModel(ModelElement):
         :param google_sheet_id: The Google Sheet ID containing the model.
         """
 
-        self.client = pygsheets.authorize(
-            client_secret=google_sheet_oath2_credentials, scopes=self.SCOPES
-        )
+        self.client = google_sheet_client
         self.sheet = self.client.open_by_key(google_sheet_id)
 
         # TODO: at some point, we should read the version number from the Google Sheets document... somehow.
@@ -102,8 +100,6 @@ class GSheetModel(ModelElement):
 
         return result
 
-    # Decorator that can save time when associated operation is periodically called with the same arguments.
-    @lru_cache
     def entity_worksheets(self) -> List[EntityWorksheet]:
         """
         A list of worksheets available in this model.
@@ -140,7 +136,6 @@ class GSheetModel(ModelElement):
             for worksheet in entity_worksheets
         ]
 
-    @lru_cache
     def entities(self) -> List[Entity]:
         """
         :return: The list of entities in this model.
@@ -187,7 +182,7 @@ class GSheetModel(ModelElement):
             result.extend(worksheet.enums)
         return result
 
-    @cached_property
+    @property
     def mappings(self) -> List[Mappings.Mapping]:
         """Return a list of all the mappings in this LinkML document."""
         mappings = [
@@ -314,7 +309,7 @@ class GSheetModel(ModelElement):
         )
 
         def fix_type_name(entity, dct, prop):
-            print(f"fix_type_name({entity}, {dct}, {prop})")
+            logging.debug(f"fix_type_name({entity}, {dct}, {prop})")
             value = dct[prop]
             if value is not None and value not in valid_types:
                 logging.warning(

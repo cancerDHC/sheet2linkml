@@ -3,7 +3,7 @@ import re
 import urllib.parse
 
 from typing import List, Dict
-from functools import cached_property
+from functools import lru_cache
 
 from sheet2linkml.terminologies.service import TerminologyService
 from sheet2linkml.model import ModelElement
@@ -67,7 +67,7 @@ class Entity(ModelElement):
             if row.get(EntityWorksheet.COL_ATTRIBUTE_NAME) is not None
         ]
 
-    @cached_property
+    @property
     def attributes(self):
         """
         Returns a list of attributes in this entity. We construct this by wrapping the
@@ -157,7 +157,7 @@ class Entity(ModelElement):
 
         return f"[{self.name} in sheet {self.worksheet.title}]({self.worksheet.url})"
 
-    @cached_property
+    @property
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this entity.
@@ -309,7 +309,7 @@ class Attribute:
 
         return min_count, max_count
 
-    @cached_property
+    @property
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this attribute.
@@ -368,7 +368,9 @@ class Attribute:
             return None
 
         # Look up enumerations on the Terminology Service.
-        enum_info = self.terminology_service.get_enum_values_for_field(self.full_name)
+        enum_info = self.terminology_service.get_enum_values_for_field(
+            "CRDC-H", self.entity.name, self.name
+        )
         permissible_values = {}
         for pv in enum_info.get("permissible_values", []):
             text = pv.get("text")

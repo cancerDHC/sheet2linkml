@@ -78,7 +78,9 @@ def main(
     if "SHEET2LINKML_GOOGLE_SERVICE_ACCT" in os.environ:
         # If an environment variable SHEET2LINKML_GOOGLE_SERVICE_ACCT is set, use it as a
         # Service Account (https://pygsheets.readthedocs.io/en/stable/authorization.html#service-account)
-        logging.info('Using Google Sheet API credentials from service account environment variable.')
+        logging.info(
+            "Using Google Sheet API credentials from service account environment variable."
+        )
         pygclient = pygsheets.authorize(
             service_account_env_var="SHEET2LINKML_GOOGLE_SERVICE_ACCT",
             scopes=GSheetModel.SCOPES,
@@ -94,7 +96,7 @@ def main(
                 + "https://github.com/cancerDHC/sheet2linkml#authorization for information on creating this file."
             )
             sys.exit(1)
-        logging.info('Using Google Sheet API credentials from credentials file.')
+        logging.info("Using Google Sheet API credentials from credentials file.")
         pygclient = pygsheets.authorize(
             client_secret=google_api_credentials, scopes=GSheetModel.SCOPES
         )

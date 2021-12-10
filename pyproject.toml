@@ -42,3 +42,4 @@ python-dotenv = "^0.15.0"
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
 black = "^21.9b0"
+

@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Releases](https://github.com/cancerDHC/sheet2linkml/releases)
 
 ## [Unreleased]
+* Bugs or Features yet to be resolved.
+
+## [v1.3.0]
 * Feature: added a dummy Google Sheet, the expected schema, and a test to compare them.
 * Feature: cleaned up GitHub Action for style checks and added PyTest.
 * Feature: added support for storing Google API credentials in an environmental variable, and added it to 

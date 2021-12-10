@@ -68,7 +68,12 @@ git checkout -b release-1.2 develop # Switched to a new branch "release-1.2"
 # minor bug fixes and preparing metadata for a release
 # e.g., version number, build dates
 # commit changes
+```
 
+Update the version number of the release in [CHANGELOG.md](CHANGELOG.md) and document some of the new changes that will be 
+part of the release.
+
+```
 # merge changes into "main"
 git checkout main # switched to branch "main"
 git merge --no-ff release-1.2 # merge into "main" with summary of changes
@@ -85,7 +90,8 @@ Once the code has been merged into the `main` branch on this repo, there are two
 to ensure a release is complete.
 
 - You should create a GitHub tag, with the appropriate version number.
-- You should push the package to PyPI.
+- You should push the package to PyPI. Before pushing the package to PyPI make sure you have updated the version number in the 
+[pyproject.toml](pyproject.toml) file so that it matches the version number of the release you described in the CHANGELOG.
 
 ### Release to Test PyPI _(optional)_
 The purpose of this section is to verify that the package looks and works as intended, by viewing it on Test PyPI and 

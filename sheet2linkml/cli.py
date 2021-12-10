@@ -92,7 +92,7 @@ def main(
                 f"Google API Credential file '{google_api_credentials}' not found: please see "
                 + "https://github.com/cancerDHC/sheet2linkml#authorization for information on creating this file."
             )
-            exit(1)
+            sys.exit(1)
         pygclient = pygsheets.authorize(
             client_secret=google_api_credentials, scopes=GSheetModel.SCOPES
         )
@@ -104,7 +104,7 @@ def main(
         logging.error(
             "A Google Sheet ID is required; please set environmental variable 'CDM_GOOGLE_SHEET_ID' to a Google Sheet ID."
         )
-        exit(1)
+        sys.exit(1)
 
     # Load the Google Sheet model and add the development version number.
     model = GSheetModel(pygclient, google_sheet_id)
@@ -141,7 +141,7 @@ def main(
             )
             for entity in model.entities():
                 logging.error(f" - {entity.name}")
-            exit(1)
+            sys.exit(1)
 
         mappings = list()
 
@@ -162,7 +162,7 @@ def main(
         if write_mappings:
             Mappings.write_to_file(model.mappings, filename=write_mappings, model=model)
 
-    exit(0)
+    sys.exit(0)
 
 
 if __name__ == "__main__":

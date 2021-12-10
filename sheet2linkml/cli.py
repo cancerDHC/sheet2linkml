@@ -68,6 +68,8 @@ def main(
     # Display INFO log entry and up.
     if os.path.exists(logging_config):
         logging.config.fileConfig(logging_config)
+    else:
+        logging.basicConfig(level=logging.INFO)
 
     # Load environemental variables from `.env` if one is present.
     load_dotenv()

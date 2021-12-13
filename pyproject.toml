@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sheet2linkml"
-version = "1.2.0"
+version = "1.3.0"
 description = "Google Sheets to LinkML generator for the CRDC-H model"
 authors = [
     "Gaurav Vaidya <gaurav@renci.org>"
@@ -38,4 +38,7 @@ pygsheets = "^2.0.4"
 PyYAML = "^5.4.1"
 setuptools = "^52.0.0"
 python-dotenv = "^0.15.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
 black = "^21.9b0"

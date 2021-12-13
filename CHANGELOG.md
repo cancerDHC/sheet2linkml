@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Releases](https://github.com/cancerDHC/sheet2linkml/releases)
 
 ## [Unreleased]
+* Bugs or Features yet to be resolved.
+
+## [v1.3.0]
+* Feature: added a dummy Google Sheet, the expected schema, and a test to compare them.
+* Feature: cleaned up GitHub Action for style checks and added PyTest.
+* Feature: added support for storing Google API credentials in an environmental variable, and added it to 
+  GitHub Actions.
+* Feature: added check for Google Sheet ID.
+* Feature: updated @cached_property with @property @lru_cache to support Python 3.7.
+* Bug: updated CCDH Terminology API endpoint for enumerations.
+* Bug: fixed code to correctly handle 404 responses from the TCCM Terminology Service.
+* Bug: replaced unnecessary print() in GSheetModel with logging.error().
 
 ## [v1.2.0] - 2021-11-29
 

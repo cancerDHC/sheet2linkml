@@ -2,7 +2,7 @@ import logging
 import re
 
 from typing import List, Dict
-from functools import cached_property
+from functools import lru_cache
 
 from linkml_runtime.linkml_model.meta import (
     SchemaDefinition,
@@ -151,7 +151,7 @@ class Enum(ModelElement):
 
         return f"[{self.name} in sheet {self.worksheet.title}]({self.worksheet.url})"
 
-    @cached_property
+    @property
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this enum.
@@ -264,7 +264,7 @@ class EnumValue:
 
         return f'{self.__class__.__name__} named "{self.name}" containing {len(self.row)} properties'
 
-    @cached_property
+    @property
     def mappings(self) -> Mappings:
         """
         Returns the list of mappings for this enum value.

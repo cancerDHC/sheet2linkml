@@ -21,8 +21,8 @@ class TCCMService(TerminologyService):
     # Decorator that can save time when associated operation is periodically called with the same arguments.
     # This is unlikely to change during a run and is quite expensive (since we download it from the network), so
     # we memoize it.
-    @lru_cache
-    def get_enum_values_for_field(self, field_name: str):
+    @lru_cache(256)
+    def get_enum_values_for_field(self, model: str, entity: str, attribute: str):
         """
         Returns information on the enum fields for a particular field.
 
@@ -31,7 +31,7 @@ class TCCMService(TerminologyService):
         """
 
         # Construct the URL we need to access the enumeration information.
-        url = f"{self.base_url}/enumerations/{field_name}"
+        url = f"{self.base_url}/enumerations/{model}/{entity}/{attribute}"
         logging.debug(f"Querying TCCM for attribute info: {url}")
 
         # Query the URL.
@@ -40,7 +40,12 @@ class TCCMService(TerminologyService):
         response = requests.get(
             url, headers={"accept": "application/x-yaml"}, params={"value_only": "true"}
         )
-        if not response.ok:
+        if response.status_code == 404:
+            logging.debug(
+                f"Field not found on TCCM Terminology Service ({field_name}): {response}"
+            )
+            return {}
+        elif not response.ok:
             logging.debug(f"Error accessing TCCM Terminology Service: {response}")
             return {}
 
